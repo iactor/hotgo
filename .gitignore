@@ -6,3 +6,7 @@ pull.bat
 push.sh
 /dist
 
+# Local CLI database configuration and generated TypeScript declarations
+/server/hack/config.yaml
+/web/auto-imports.d.ts
+

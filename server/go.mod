@@ -24,6 +24,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.2
 	github.com/gorilla/websocket v1.5.3
 	github.com/kayon/iploc v0.0.0-20200312105652-bda3e968a794
+	github.com/lib/pq v1.10.9
 	github.com/minio/minio-go/v7 v7.0.94
 	github.com/mojocn/base64Captcha v1.3.8
 	github.com/olekukonko/tablewriter v1.1.0
@@ -102,7 +103,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
-	github.com/lib/pq v1.10.9 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/magiconair/properties v1.8.10 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
