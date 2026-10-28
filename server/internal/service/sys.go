@@ -75,6 +75,8 @@ type (
 		ClusterSync(ctx context.Context, message *gredis.Message)
 	}
 	ISysConfig interface {
+		// GetAiCustomerService 获取已校验的智能客服运行配置。
+		GetAiCustomerService(ctx context.Context) (conf *sysin.AiCustomerServiceConfigModel, err error)
 		// InitConfig 初始化系统配置
 		InitConfig(ctx context.Context)
 		// LoadConfig 加载系统配置

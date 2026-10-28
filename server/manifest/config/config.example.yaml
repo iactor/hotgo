@@ -1,3 +1,9 @@
+# 智能客服内部接口鉴权（实际值仅填写到本机 config.yaml，不提交仓库）
+aiCustomerService:
+  # 优先使用非空 AI_CUSTOMER_SERVICE_TOKEN 环境变量，否则读取此项。
+  # 必须与 Python 后端 HOTGO_SERVICE_TOKEN 一致；两处均为空时拒绝访问。
+  serviceToken: ""
+
 # hotgo系统配置
 system:
   # 应用名称

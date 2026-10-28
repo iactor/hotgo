@@ -28,6 +28,7 @@
           <GeoSetting v-if="type === 9" />
           <PaySetting v-if="type === 10" />
           <WechatSetting v-if="type === 11" />
+          <AiCustomerServiceSetting v-if="type === 12" />
         </n-card>
       </n-grid-item>
     </n-grid>
@@ -70,6 +71,9 @@
     }),
     LoginSetting = defineAsyncComponent(() => {
       return import('./LoginSetting.vue');
+    }),
+    AiCustomerServiceSetting = defineAsyncComponent(() => {
+      return import('./AiCustomerServiceSetting.vue');
     });
   const typeTabList = [
     {
@@ -127,6 +131,11 @@
       desc: '公众号/开放平台/小程序配置等',
       key: 11,
     },
+    {
+      name: '智能客服',
+      desc: '模型和知识检索配置',
+      key: 12,
+    },
   ];
   export default defineComponent({
     components: {
@@ -141,6 +150,7 @@
       PaySetting,
       WechatSetting,
       LoginSetting,
+      AiCustomerServiceSetting,
     },
     setup() {
       const router = useRouter();

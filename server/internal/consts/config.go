@@ -9,6 +9,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
+const ConfigGroupAiCustomerService = "ai_customer_service"
+
 // RequestEncryptKey
 // 请求加密密钥用于敏感数据加密，16位字符，前后端需保持一致
 // 安全起见，生产环境运行时请注意修改

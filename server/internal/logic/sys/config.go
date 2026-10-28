@@ -214,6 +214,18 @@ func (s *sSysConfig) GetConfigByGroup(ctx context.Context, in *sysin.GetConfigIn
 	}
 
 	res = new(sysin.GetConfigModel)
+	if in.Group == consts.ConfigGroupAiCustomerService {
+		values := make(g.Map, len(models))
+		for _, row := range models {
+			values[row.Key] = row.Value
+		}
+		conf, validationErr := sysin.FilterAiCustomerServiceConfig(values)
+		if validationErr != nil {
+			return nil, validationErr
+		}
+		res.List = conf.Map()
+		return
+	}
 	if len(models) > 0 {
 		res.List = make(g.Map, len(models))
 		for _, v := range models {
@@ -240,6 +252,10 @@ func (s *sSysConfig) ConversionType(ctx context.Context, models *entity.SysConfi
 
 // UpdateConfigByGroup 更新指定分组的配置
 func (s *sSysConfig) UpdateConfigByGroup(ctx context.Context, in *sysin.UpdateConfigInp) (err error) {
+	// 服务层调用同样执行输入过滤，避免绕过 HTTP 预处理写入非法配置。
+	if err = in.Filter(ctx); err != nil {
+		return
+	}
 	if in.Group == "" {
 		err = gerror.New("分组不能为空")
 		return
@@ -276,6 +292,16 @@ func (s *sSysConfig) UpdateConfigByGroup(ctx context.Context, in *sysin.UpdateCo
 	}
 
 	global.PublishClusterSync(ctx, consts.ClusterSyncSysconfig, nil)
+	return
+}
+
+// GetAiCustomerService 获取已校验的智能客服运行配置。
+func (s *sSysConfig) GetAiCustomerService(ctx context.Context) (conf *sysin.AiCustomerServiceConfigModel, err error) {
+	data, err := s.GetConfigByGroup(ctx, &sysin.GetConfigInp{Group: consts.ConfigGroupAiCustomerService})
+	if err != nil {
+		return nil, err
+	}
+	err = gconv.Scan(data.List, &conf)
 	return
 }
 

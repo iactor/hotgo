@@ -45,6 +45,9 @@ var (
 			}...)
 
 			s.Group("/", func(group *ghttp.RouterGroup) {
+				// 注册独立服务令牌鉴权的内部接口
+				router.Internal(ctx, group)
+
 				// 注册后台路由
 				router.Admin(ctx, group)
 
